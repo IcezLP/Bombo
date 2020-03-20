@@ -1,0 +1,345 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- Generator section start here -->
+<section id="generator">
+  <div class="container">
+    <div class="row middle-sm middle-md marginless">
+      <div class="col-xs-12 col-sm-5 col-md-4">
+        <div class="box controls">
+          <h1 class="title">Bombo</h1>
+          <h3 class="subtitle">Dummy profile generator</h3>
+          <form class="form" id="parameters" novalidate>
+            <div class="form-item">
+              <label class="form-label" data-tooltip="You have to choose a value between 1 and 100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                How much profiles do you want?
+              </label>
+              <input class="form-input" id="amount" type="number" value="1" min="1" max="100"
+                placeholder="Choose a value between 1 and 100 (Default: 1)">
+            </div>
+            <div class="form-item">
+              <label class="form-label"
+                data-tooltip="Defined profiles are saved on our app, you can use them to create dummy users on your projects">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                What kind of profiles do you want?
+              </label>
+              <select class="form-input" name="type" id="type">
+                <option value="random">Random</option>
+                <option value="defined">Defined</option>
+              </select>
+            </div>
+            <button class="form-submit" type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+              Generate
+            </button>
+          </form>
+          <hr class="separator">
+          <button class="action copy" type="button" data-clipboard-target="#profiles" disabled>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+            </svg>
+            Copy to clipboard
+          </button>
+          <button class="action" type="button" onclick="download()" disabled>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download as JSON
+          </button>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-7 col-md-8">
+        <div class="box results">
+          <pre>
+            <code class="json" id="profiles">
+Each generated profile follow this model
+
+{
+  "id": String,
+  "username": String,
+  "slug": String,
+  "avatar": String,
+  "password": String,
+  "first_name": String,
+  "middle_name": String,
+  "last_name": String,
+  "full_name": String,
+  "birth_date": Date,
+  "gender": String,
+  "nationality": String,
+  "job": String,
+  "company": String,
+  "drive_license": Boolean,
+  "contact": {
+    "phone": Number,
+    "email": String,
+  },
+  "adress": {
+    "country": String,
+    "city": String,
+    "zip_code": Number,
+    "street": String,
+    "street_number": Number,
+  },
+  "hobbies": [String],
+}
+            </code>
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Generator section end here -->
+
+<!-- Api documentation start here -->
+<section id="api">
+  <h1 class="title">Use our API!</h1>
+  <div class="endpoint">
+    <h3>Main endpoint</h3>
+    <span class="code">GET https://bombo.jbrasier.com/profiles</span>
+    <h3>Query parameters</h3>
+    <table class="table">
+      <thead class="table-head">
+        <tr class="item">
+          <th>Key</th>
+          <th>Value</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr class="item">
+          <td>type <i>(String)</i></td>
+          <td>
+            random <i>(Default)</i>
+            <br>
+            defined
+          </td>
+          <td>
+            Defined profiles are reusable, random profiles are not
+          </td>
+        </tr>
+        <tr class="item">
+          <td>amount <i>(Number)</i></td>
+          <td>1 - 100 <i>(Default: 1)</i></td>
+          <td>The amount of profiles you want to generate</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>Response</h3>
+    <table class="table">
+      <thead class="table-head">
+        <tr class="item">
+          <th>Key</th>
+          <th>Value</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr class="item">
+          <td>status <i>(Number)</i></td>
+          <td>
+            200 <i>(Success)</i>
+            <br>
+            400 <i>(Bad request)</i>
+          </td>
+          <td>The response status</td>
+        </tr>
+        <tr class="item">
+          <td>params <i>(Object)</i></td>
+          <td>{}</td>
+          <td>A copy of the query parameters you set</td>
+        </tr>
+        <tr class="item">
+          <td>errors <i>(Object)</i></td>
+          <td>{}</td>
+          <td>Query parameters validation errors</td>
+        </tr>
+        <tr class="item">
+          <td>profiles <i>(Array)</i></td>
+          <td>[]</td>
+          <td>The generated profiles</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="endpoint">
+    <h3>Find endpoint</h3>
+    <span class="code">GET https://bombo.jbrasier.com/find</span>
+    <h3>Query parameters</h3>
+    <table class="table">
+      <thead class="table-head">
+        <tr class="item">
+          <th>Key</th>
+          <th>Value</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr class="item">
+          <td>by <i>(String)</i></td>
+          <td>
+            id
+            <br>
+            username
+            <br>
+            slug
+            <br>
+            email
+          </td>
+          <td>The field you want to search for</td>
+        </tr>
+        <tr class="item">
+          <td>value <i>(String)</i></td>
+          <td>/</td>
+          <td>The value you want to search for</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>Response</h3>
+    <table class="table">
+      <thead class="table-head">
+        <tr class="item">
+          <th>Key</th>
+          <th>Value</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr class="item">
+          <td>status <i>(Number)</i></td>
+          <td>
+            200 <i>(Success)</i>
+            <br>
+            400 <i>(Bad request)</i>
+          </td>
+          <td>The response status</td>
+        </tr>
+        <tr class="item">
+          <td>params <i>(Object)</i></td>
+          <td>{}</td>
+          <td>A copy of the query parameters you set</td>
+        </tr>
+        <tr class="item">
+          <td>errors <i>(Object)</i></td>
+          <td>{}</td>
+          <td>Query parameters validation errors</td>
+        </tr>
+        <tr class="item">
+          <td>profile <i>(Object)</i></td>
+          <td>{}</td>
+          <td>The matching profile</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<!-- Api documentation end here -->
+
+<script>
+  // Get origin url on first page load
+  const url = window.location.origin
+  //
+  const urlContainers = document.getElementsByClassName('url')
+  //
+  for (k = 0; k < urlContainers.length; k++) {
+    urlContainers[k].innerText = url
+  }
+
+  // Initialize an empty var to handle data download
+  let data;
+
+  function download() {
+    const fileName = 'profiles.json';
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.style = "display: none";
+
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], {
+      type: "octet/stream"
+    });
+    const url = window.URL.createObjectURL(blob);
+
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+  function generate(amount, type) {
+    if (!data) {
+      const actions = document.getElementsByClassName('action')
+      actions[0].removeAttribute('disabled')
+      actions[1].removeAttribute('disabled')
+    }
+
+    fetch(`/profiles?amount=${amount}&type=${type}`, {
+      method: 'GET'
+    }).then(async response => {
+      response = await response.json();
+      const generatedContent = document.getElementById('profiles');
+      data = response.profiles;
+      if (generatedContent) {
+        generatedContent.innerHTML = JSON.stringify(response.profiles, null, 2);
+        hljs.initHighlighting.called = false;
+        hljs.initHighlighting();
+      }
+    })
+  }
+
+  var form = document.getElementById("parameters");
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const amount = document.getElementById('amount');
+    const amountError = document.querySelector('span[data-name=amount]')
+    const type = document.getElementById('type');
+    let errors = {};
+
+    if (amount.value < 1 || amount.value > 100 || !amount.value) {
+      errors.amount = "Please select a value between 1 and 100"
+    }
+
+    if (Object.keys(errors).length !== 0) {
+      if (errors.amount && !amountError) {
+        amount.classList.add('form-error')
+        const error = document.createElement('span')
+        error.setAttribute('class', 'form-error')
+        error.setAttribute('data-name', 'amount')
+        error.textContent = errors.amount
+        amount.parentNode.insertBefore(error, amount.nextSibling)
+      }
+
+      return;
+    }
+
+    if (amountError) {
+      amount.classList.remove('form-error')
+      amountError.remove()
+    }
+
+    return generate(amount.value, type.value)
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,366 @@
+/* Global styles start here */
+
+html,
+body,
+* {
+  font-family: 'Lato', sans-serif;
+  /* color: #232020; */
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='gray' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") 98% no-repeat #eee;
+  background-size: 18px;
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+/* remove default arrow on ie10 and ie11 */
+select::-ms-expand {
+  display: none;
+}
+
+/* target Internet Explorer 9 to undo the custom arrow */
+@media screen and (min-width:0\0) {
+  select {
+    background: none\9;
+    padding: 5px\9;
+  }
+}
+
+.marginless {
+  margin: 0;
+}
+
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 150%;
+  margin-bottom: 5px;
+  padding: 7px;
+  max-width: 100%;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: hsla(0, 0%, 20%, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+/* Global styles end here */
+
+/* Generator section styles start here */
+#generator {
+  min-height: 100vh;
+  background-color: #282c34;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+}
+
+#generator .container {
+  width: 100%;
+  padding: 20px 0;
+}
+
+#generator .controls {
+  background-color: #ffffff;
+  padding: 2em;
+  border-radius: 4px;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1), 0 10px 30px 0 rgba(0, 0, 0, 0.2);
+}
+
+#generator .controls .title {
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-size: 22px;
+  color: #282c34;
+}
+
+#generator .controls .subtitle {
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: #524f4f;
+  font-size: 18px;
+  color: #282c34;
+}
+
+#generator .controls .form .form-item {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#generator .controls .form .form-item .form-label {
+  margin-bottom: 5px;
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  color: #282c34;
+}
+
+#generator .controls .form .form-item .form-label .icon {
+  stroke-width: 2.5px;
+  height: 16px;
+  width: 16px;
+  margin-right: 5px;
+}
+
+#generator .controls .form .form-item .form-input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #b6b1b1;
+  background-color: #f8f8f8;
+  padding: 6px 10px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+#generator .controls .form .form-item .form-input:disabled {
+  color: #a5a5a5;
+  cursor: not-allowed;
+}
+
+#generator .controls .form .form-item .form-input:focus {
+  border-color: #1981e9;
+}
+
+#generator .controls .form .form-item .form-input.form-error {
+  border-color: red;
+}
+
+#generator .controls .form .form-item span.form-error {
+  color: red;
+  font-size: 12px;
+}
+
+#generator .controls .form .form-submit {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 10px;
+  background-color: #3399ff;
+  border: 1px solid #3399ff;
+  border-radius: 2px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+#generator .controls .form .form-submit:hover {
+  background-color: #1981e9;
+  border-color: #1981e9;
+}
+
+#generator .controls .form .form-submit:active {
+  background-color: #0a73db;
+  border-color: #0a73db;
+}
+
+#generator .controls .form .form-submit .icon {
+  stroke: #ffffff;
+  stroke-width: 2.5px;
+  height: 16px;
+  width: 16px;
+  margin-right: 5px;
+}
+
+#generator .controls .action {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 10px;
+  background-color: #ffffff;
+  border: 1px solid #3399ff;
+  border-radius: 2px;
+  font-weight: 700;
+  color: #3399ff;
+  cursor: pointer;
+  font-size: 14px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+#generator .controls .action:disabled {
+  cursor: not-allowed;
+}
+
+#generator .controls .action:hover:not(:disabled) {
+  background-color: #1981e9;
+  border: 1px solid #1981e9;
+  color: #ffffff;
+}
+
+#generator .controls .action:active:not(:disabled) {
+  background-color: #0a73db;
+  border-color: #0a73db;
+  color: #ffffff;
+}
+
+#generator .controls .action .icon {
+  stroke: #3399ff;
+  stroke-width: 2.5px;
+  height: 16px;
+  width: 16px;
+  margin-right: 5px;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+#generator .controls .action:hover:not(:disabled) .icon {
+  stroke: #ffffff;
+}
+
+#generator .controls .action:active:not(:disabled) .icon {
+  stroke: #ffffff;
+}
+
+#generator .controls .separator {
+  margin: 20px 0;
+  border: 1px solid #b6b1b1;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+}
+
+#generator .controls .action:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+#generator .results #profiles {
+  border-radius: 4px;
+  max-height: 600px;
+}
+
+/* Generator section styles end here */
+
+/* Api documentation styles start here */
+
+#api {
+  min-height: 100vh;
+  background-color: #282c34;
+  color: #eeeeee;
+  padding: 0 20px 20px 20px;
+}
+
+#api .title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+#api .container {
+  width: 100%;
+  padding: 20px 0;
+}
+
+#api .endpoint {}
+
+#api .endpoint h3 {
+  font-size: 18px;
+}
+
+#api .code {
+  padding: 20px;
+  display: block;
+  background: #8a8a8a;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, .06);
+  margin: 20px 0;
+}
+
+#api .table {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#api .table .table-head {
+  text-align: left;
+}
+
+#api .table .table-head .item {
+  border-bottom: 1px solid #8a8a8a;
+}
+
+#api .table .table-head .item th {
+  padding: 10px 0;
+}
+
+#api .table .table-body {
+  text-align: left;
+}
+
+#api .table .table-body .item td {
+  padding: 10px 0;
+}
+
+#api .table .table-body .item td i {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+#api .table .table-body .item:not(:last-child) {
+  border-bottom: 1px solid #8a8a8a;
+}
+
+/* Api documentation styles end here */
